@@ -3,6 +3,7 @@ import App from "../../App";
 import Home from "../Home/Home";
 import ProductDetails from "../Product-details/ProductDetails";
 import ProductPage from "../ProductPage/ProductPage";
+import Cart from "../Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/product/:id",
