@@ -10,7 +10,7 @@ const App = () => {
     <div>
       <CartProvider>
         <Navbar />
-        <div className="mt-[25%] sm:mt-[15%] md:mt-[10%]">
+        <div className="py-32">
           <Outlet />
         </div>
       </CartProvider>

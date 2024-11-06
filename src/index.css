@@ -5,6 +5,9 @@ button,
 input {
   outline: none;
 }
+body{
+  background-color: #f7f7f7;
+}
 html {
   scroll-behavior: smooth;
 }

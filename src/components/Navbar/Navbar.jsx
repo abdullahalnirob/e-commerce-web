@@ -7,7 +7,11 @@ const Navbar = () => {
   return (
     <div>
       <nav className="flex fixed z-50 bg-white top-0 left-0 ring-0 w-full items-center px-5 md:px-0 justify-around py-3 md:py-6 shadow-md">
-        <Link to='/'><div className="logo">E-shop</div></Link>
+        <Link to='/'>
+          <div className="text-2xl">
+            LuLu Baba
+          </div>
+        </Link>
         <div>
           <ul className="flex items-center space-x-5">
             <Link to='/'><li className="cursor-pointer">Home</li></Link>

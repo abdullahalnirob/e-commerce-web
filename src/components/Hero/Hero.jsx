@@ -9,7 +9,7 @@ const Hero = () => {
           <Slider />
         </div>
         <div className="mx-0 my-10 md:my-0 md:mx-10">
-          <h1 className="text-5xl md:text-7xl">E-commerce</h1>
+          <h1 className="text-3xl md:text-5xl">Welcome to LuLu baba</h1>
           <p className="md:text-xl">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat,
             vitae cum saepe optio quos libero.

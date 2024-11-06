@@ -93,44 +93,66 @@ const ProductPage = () => {
         ) :
           (
             <section className="body-font mx-2 md:mx-10 my-5">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 md:gap-10">
+              <div class="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5">
                 {filteredProducts.map((p) => {
-                  const { id, title, image, price } = p
+                  const { id, title, image, price,rating } = p
                   return (
-                    <div key={id} className="w-full shadow-md ring-1 md:px-2 ring-gray-400 rounded-md">
-                      <a className="block relative h-48 rounded overflow-hidden">
-                        <img
-                          alt="ecommerce"
-                          className="w-full p-6 h-full block hover:scale-105 duration-300"
-                          src={image}
-                        />
-                      </a>
-                      <div className="mt-4 m-2">
-                        <h2 className="text-gray-900 h-20 md:h-16 title-font font-medium">
-                          {title.slice(0, 28) + "..."}
-                        </h2>
-                        <div className="flex flex-col justify-between mx-2">
-                          <p className="mt-1">${price}</p>
-                          <div className="flex items-center space-x-1 text-yellow-400">
-                            <FaStar />
-                            <FaStar />
-                            <FaStar />
-                            <FaStar />
-                            <FaStar />
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Link to={`/product/${id}`}>
-                            <button className="bg-blue-600 hover:bg-blue-700 duration-300 active:scale-95 px-3 py-2 my-4 text-white">
-                              Buy Now
-                            </button>
-                          </Link>
+                    // <div key={id} className="w-full shadow-md ring-1 md:px-2 ring-gray-400 rounded-md">
+                    //   <a className="block relative h-48 rounded overflow-hidden">
+                    //     <img
+                    //       alt="ecommerce"
+                    //       className="w-full p-6 h-full block hover:scale-105 duration-300"
+                    //       src={image}
+                    //     />
+                    //   </a>
+                    //   <div className="mt-4 m-2">
+                    //     <h2 className="text-gray-900 h-20 md:h-16 title-font font-medium">
+                    //       {title.slice(0, 28) + "..."}
+                    //     </h2>
+                    //     <div className="flex flex-col justify-between mx-2">
+                    //       <p className="mt-1">${price}</p>
+                    //       <div className="flex items-center space-x-1 text-yellow-400">
+                    //         <FaStar />
+                    //         <FaStar />
+                    //         <FaStar />
+                    //         <FaStar />
+                    //         <FaStar />
+                    //       </div>
+                    //     </div>
+                    //     <div className="flex items-center space-x-1">
+                    //       <Link to={`/product/${id}`}>
+                    //         <button className="bg-blue-600 hover:bg-blue-700 duration-300 active:scale-95 px-3 py-2 my-4 text-white">
+                    //           Buy Now
+                    //         </button>
+                    //       </Link>
+                    //       <button
+                    //         onClick={() => AddToCart(p)}
+                    //         className="bg-blue-600 hover:bg-blue-700 duration-300 active:scale-95 px-3 py-2 my-4  text-white">
+                    //         <FaCartShopping className="text-2xl" />
+                    //       </button>
+                    //     </div>
+                    //   </div>
+                    // </div>
+                    <div className="relative border bg-white border-gray-200 rounded-xl">
+                      <span className="absolute top-0 left-0 text-[11px] bg-red-500 text-white p-2 rounded-br-xl rounded-tl-xl">
+                        {rating.rate}% OFF
+                      </span>
+                      <img className="w-[200px] h-[200px] bg-white object-contain rounded-t-xl" src={image} alt="" />
+                      <div className="p-5">
+                        <h2 className="text-lg">{title.slice(0, 10) + "..."}</h2>
+                        <h4 className="text-gray-500 text-sm">${price} <span class="line-through text-sm text-red-500">$15.99</span></h4>
+                      </div>
+                      <div className="flex justify-around">
+                        <Link to={`/product/${id}`} className="w-full">
+                          <button className="py-3 w-5/6 bg-blue-500 hover:bg-blue-600 duration-200 rounded-bl-xl text-white">Buy Now</button>
+                        </Link>
+                        <Link className="w-1/4">
                           <button
                             onClick={() => AddToCart(p)}
-                            className="bg-blue-600 hover:bg-blue-700 duration-300 active:scale-95 px-3 py-2 my-4  text-white">
-                            <FaCartShopping className="text-2xl" />
+                            className="py-3 rounded-br-xl text-blue-400 hover:text-blue-500 duration-300 font-extrabold flex justify-center">
+                            <FaCartShopping className="text-3xl" />
                           </button>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   )
@@ -139,13 +161,7 @@ const ProductPage = () => {
             </section>
           )
       }
-      <center>
-        <button className="px-3 my-7 py-2 bg-blue-600 hover:bg-blue-700 text-white">
-          View All Product
-        </button>
-      </center>
-
-    </div>
+    </div >
   );
 };
 
