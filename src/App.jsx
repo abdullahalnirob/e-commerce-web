@@ -10,9 +10,7 @@ const App = () => {
     <div>
       <CartProvider>
         <Navbar />
-        <div className="py-32">
-          <Outlet />
-        </div>
+        <Outlet />
       </CartProvider>
       <Footer />
       <Toaster

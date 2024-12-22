@@ -4,6 +4,11 @@ import Home from "../Home/Home";
 import ProductDetails from "../Product-details/ProductDetails";
 import ProductPage from "../ProductPage/ProductPage";
 import Cart from "../Cart/Cart";
+import { useState } from "react";
+
+// States
+// const [isLogin, setisLogin] = useState(false);
+// States
 
 export const router = createBrowserRouter([
   {
@@ -22,10 +27,12 @@ export const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+
       {
         path: "/product/:id",
         element: <ProductDetails />,
-        loader:({params})=>fetch(`https://fakestoreapi.com/products/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://fakestoreapi.com/products/${params.id}`),
       },
     ],
   },

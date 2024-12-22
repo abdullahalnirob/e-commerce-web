@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import { FaSearch, FaStar } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
-
-// context api
+// Context API
 import { CartContext } from "../../Context/CartContext";
-// context api
+
 const ProductPage = () => {
   const { AddToCart } = useContext(CartContext);
 
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -56,112 +56,89 @@ const ProductPage = () => {
     product.title.toLowerCase().includes(searchTerm)
   );
 
-
   return (
-    <div id="products">
-      <div className="flex items-center justify-between mx-5 md:mx-20 my-4">
+    <div id="products" className="bg-gray-50 min-h-screen">
+      <div className="flex flex-wrap items-center justify-between mx-5 md:mx-20 my-6 gap-4">
         <select
           value={sortOrder}
           onChange={handleSortChange}
-          className="ring-1 ring-gray-500 py-2 md:py-1 px-3 outline-none rounded"
+          className="ring-2 ring-blue-500 py-2 md:py-1 px-3 outline-none rounded shadow-sm text-gray-600 hover:ring-blue-700 focus:ring-blue-700 transition duration-200"
         >
           <option value="">Sort by Price</option>
           <option value="high-to-low">High to Low</option>
           <option value="low-to-high">Low to High</option>
         </select>
-        <div className="flex items-center">
+        <div className="relative flex items-center">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearchChange}
-            className="px-3 py-2 w-32 md:w-[unset]   bg-gray-200"
+            className="px-4 py-2 w-40 md:w-60 bg-gray-100 rounded-l-lg shadow-md border-t border-b border-l border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Search..."
           />
-          <FaSearch className="relative -left-8 text-gray-500" />
+          <FaSearch className="absolute right-3 text-gray-500" />
         </div>
       </div>
-      {
-        loading ? (
-          <center className="my-10">
-            <div className="loading-wave">
-              <div className="loading-bar"></div>
-              <div className="loading-bar"></div>
-              <div className="loading-bar"></div>
-              <div className="loading-bar"></div>
-            </div>
-          </center>
-        ) :
-          (
-            <section className="body-font mx-2 md:mx-10 my-5">
-              <div class="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5">
-                {filteredProducts.map((p) => {
-                  const { id, title, image, price,rating } = p
-                  return (
-                    // <div key={id} className="w-full shadow-md ring-1 md:px-2 ring-gray-400 rounded-md">
-                    //   <a className="block relative h-48 rounded overflow-hidden">
-                    //     <img
-                    //       alt="ecommerce"
-                    //       className="w-full p-6 h-full block hover:scale-105 duration-300"
-                    //       src={image}
-                    //     />
-                    //   </a>
-                    //   <div className="mt-4 m-2">
-                    //     <h2 className="text-gray-900 h-20 md:h-16 title-font font-medium">
-                    //       {title.slice(0, 28) + "..."}
-                    //     </h2>
-                    //     <div className="flex flex-col justify-between mx-2">
-                    //       <p className="mt-1">${price}</p>
-                    //       <div className="flex items-center space-x-1 text-yellow-400">
-                    //         <FaStar />
-                    //         <FaStar />
-                    //         <FaStar />
-                    //         <FaStar />
-                    //         <FaStar />
-                    //       </div>
-                    //     </div>
-                    //     <div className="flex items-center space-x-1">
-                    //       <Link to={`/product/${id}`}>
-                    //         <button className="bg-blue-600 hover:bg-blue-700 duration-300 active:scale-95 px-3 py-2 my-4 text-white">
-                    //           Buy Now
-                    //         </button>
-                    //       </Link>
-                    //       <button
-                    //         onClick={() => AddToCart(p)}
-                    //         className="bg-blue-600 hover:bg-blue-700 duration-300 active:scale-95 px-3 py-2 my-4  text-white">
-                    //         <FaCartShopping className="text-2xl" />
-                    //       </button>
-                    //     </div>
-                    //   </div>
-                    // </div>
-                    <div className="relative border bg-white border-gray-200 rounded-xl">
-                      <span className="absolute top-0 left-0 text-[11px] bg-red-500 text-white p-2 rounded-br-xl rounded-tl-xl">
-                        {rating.rate}% OFF
+
+      {loading ? (
+        <center className="my-20">
+          <div className="loading-wave flex justify-center space-x-2">
+            <div className="loading-bar bg-blue-500 animate-pulse w-2 h-8 rounded"></div>
+            <div className="loading-bar bg-blue-500 animate-pulse w-2 h-8 rounded"></div>
+            <div className="loading-bar bg-blue-500 animate-pulse w-2 h-8 rounded"></div>
+            <div className="loading-bar bg-blue-500 animate-pulse w-2 h-8 rounded"></div>
+          </div>
+        </center>
+      ) : (
+        <section className="body-font mx-2 md:mx-10 my-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-6">
+            {filteredProducts.map((p) => {
+              const { id, title, image, price, rating } = p;
+              return (
+                <div
+                  key={id}
+                  className="relative border bg-white border-gray-200 rounded-xl shadow-lg transform transition hover:scale-105 duration-200 h-auto sm:h-[350px] md:h-[400px]"
+                >
+                  <span className="absolute top-0 left-0 text-[11px] bg-red-500 text-white py-1 px-2 rounded-br-xl rounded-tl-xl">
+                    {rating.rate} / 5 ★
+                  </span>
+                  <img
+                    className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] bg-gray-100 object-contain rounded-t-xl mx-auto"
+                    src={image}
+                    alt="product"
+                  />
+                  <div className="p-3 sm:p-4 md:p-5">
+                    <h2 className="text-sm sm:text-lg font-semibold text-gray-700 hover:text-blue-500">
+                      {title.slice(0, 25) + (title.length > 25 ? "..." : "")}
+                    </h2>
+                    <h4 className="text-gray-500 text-xs sm:text-sm my-2">
+                      ${price.toFixed(2)}
+                      <span className="line-through text-sm text-red-500 ml-2">
+                        $15.99
                       </span>
-                      <img className="w-[200px] h-[200px] bg-white object-contain rounded-t-xl" src={image} alt="" />
-                      <div className="p-5">
-                        <h2 className="text-lg">{title.slice(0, 10) + "..."}</h2>
-                        <h4 className="text-gray-500 text-sm">${price} <span class="line-through text-sm text-red-500">$15.99</span></h4>
-                      </div>
-                      <div className="flex justify-around">
-                        <Link to={`/product/${id}`} className="w-full">
-                          <button className="py-3 w-5/6 bg-blue-500 hover:bg-blue-600 duration-200 rounded-bl-xl text-white">Buy Now</button>
-                        </Link>
-                        <Link className="w-1/4">
-                          <button
-                            onClick={() => AddToCart(p)}
-                            className="py-3 rounded-br-xl text-blue-400 hover:text-blue-500 duration-300 font-extrabold flex justify-center">
-                            <FaCartShopping className="text-3xl" />
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </section>
-          )
-      }
-    </div >
+                    </h4>
+                  </div>
+                  <div className="flex justify-between items-center border-t p-2">
+                    <Link
+                      to={`/product/${id}`}
+                      className="flex-1 text-center py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-bl-xl"
+                    >
+                      Buy Now
+                    </Link>
+                    <button
+                      onClick={() => AddToCart(p)}
+                      className="flex items-center justify-center text-blue-500 hover:text-blue-600 text-2xl px-4"
+                    >
+                      <FaCartShopping />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
+    </div>
   );
 };
 
